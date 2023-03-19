@@ -1,0 +1,45 @@
+<html>
+<head>
+    <title>Tea Time Calculator</title>
+    <script>
+        function tea_time(i_temp, c_temp, i_time) {
+            if (i_time === 0) {
+                return;
+            }
+            let sep_temp = Math.abs(c_temp - i_temp);
+            let time_inc = i_temp / i_time;
+            let n_time;
+            if (i_temp < c_temp) {
+                n_time = i_time - ((sep_temp / time_inc + i_time) / 2);
+            } else {
+                n_time = (sep_temp / time_inc + i_time) * 2;
+            }
+            console.log("Temperature separation is:", sep_temp);
+            console.log("Time increment is:", time_inc);
+            console.log("New Brewing Time Is:", n_time);
+            document.getElementById("output").innerHTML = `<p>Temperature separation is: ${sep_temp}</p>
+            <p>
+Time increment is: ${time_inc}</p>
+            <p>New Brewing Time Is: ${n_time}</p>`;
+        }
+    </script>
+</head>
+<body>
+    <h1>Tea Time Calculator</h1>
+    <form>
+        Initial Temperature:
+        <input type="text" id="i_str">
+        <br>
+        Current Temperature:
+        <input type="text" id="c_str">
+        <br>
+        Initial Time:
+        <input type="text" id="i_t_str">
+        <br>
+        <input type="button" value="Calculate" onclick="tea_time(parseFloat(document.getElementById('i_str').value),
+        parseFloat(document.getElementById('c_str').value), 
+        parseFloat(document.getElementById('i_t_str').value))">
+    </form>
+    <div id="output"></div>
+</body>
+</html>
